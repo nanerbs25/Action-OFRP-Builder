@@ -65,6 +65,13 @@ jobs:
         echo "workspace-folder=$(pwd)" >> $GITHUB_OUTPUT
       id: pwd
 
+    - name: Run tmate
+      run: |
+        sudo apt install tmate -y
+        tmate 
+      working-directory: ${{ steps.pwd.outputs.workspace-folder }}
+      continue-on-error: true
+
     - name: Prepare the build environment
       run: |
         sudo apt install git aria2 -y
